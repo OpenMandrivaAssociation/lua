@@ -21,8 +21,8 @@ Url:		http://www.lua.org/
 Source0:	http://www.lua.org/ftp/%{name}-%{version}.tar.gz
 Source1:	lua.pc
 #Patch0:		lua-5.3.1-dynlib.patch
-Patch1:		lua-5.2.0-modules_path.patch
-Patch2:		lua52-compat-old-versions.patch
+#Patch1:		lua-5.2.0-modules_path.patch
+#Patch2:		lua52-compat-old-versions.patch
 #Patch3:		0001-Add-scimark-as-PGO-profiling-workload.patch
 #Patch4:		0001-Add-option-for-pgo-profiling-test-with-scimark.patch
 Provides:	lua%{major} = %{EVRD}
