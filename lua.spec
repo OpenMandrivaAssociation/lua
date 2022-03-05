@@ -1,4 +1,4 @@
-%define major 5.3
+%define major 5.4
 %define libname %mklibname %{name} %{major}
 %define devname %mklibname %{name} -d
 %define staticname %mklibname %{name} -d -s
@@ -13,7 +13,7 @@
 
 Summary:	Powerful, light-weight programming language
 Name:		lua
-Version:	5.3.6
+Version:	5.4.4
 Release:	1
 License:	MIT
 Group:		Development/Other

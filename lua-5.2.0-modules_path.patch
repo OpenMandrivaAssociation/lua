@@ -1,6 +1,7 @@
---- lua-5.3.1/src/luaconf.h.0001~	2015-07-16 15:32:11.148467780 +0200
-+++ lua-5.3.1/src/luaconf.h	2015-07-16 15:33:36.785961806 +0200
-@@ -188,15 +188,19 @@
+diff -up lua-5.4.4/src/luaconf.h.2~ lua-5.4.4/src/luaconf.h
+--- lua-5.4.4/src/luaconf.h.2~	2022-03-05 02:07:40.884803500 +0100
++++ lua-5.4.4/src/luaconf.h	2022-03-05 02:08:48.296839520 +0100
+@@ -217,20 +217,23 @@
  
  #else			/* }{ */
  
@@ -9,16 +10,20 @@
  #define LUA_LDIR	LUA_ROOT "share/lua/" LUA_VDIR "/"
  #define LUA_CDIR	LUA_ROOT "lib/lua/" LUA_VDIR "/"
 +#define LUA_CDIR64	LUA_ROOT "lib64/lua/" LUA_VDIR "/"
+ 
+ #if !defined(LUA_PATH_DEFAULT)
  #define LUA_PATH_DEFAULT  \
  		LUA_LDIR"?.lua;"  LUA_LDIR"?/init.lua;" \
  		LUA_CDIR"?.lua;"  LUA_CDIR"?/init.lua;" \
 +		LUA_CDIR64"?.lua;"  LUA_CDIR64"?/init.lua;" \
  		"./?.lua;" "./?/init.lua"
+ #endif
+ 
+ #if !defined(LUA_CPATH_DEFAULT)
  #define LUA_CPATH_DEFAULT \
 -		LUA_CDIR"?.so;" LUA_CDIR"loadall.so;" "./?.so"
-+		LUA_CDIR"?.so;" LUA_CDIR"loadall.so;" \
-+		LUA_CDIR64"?.so;" LUA_CDIR64"loadall.so;" \
-+		"./?.so"
++		LUA_CDIR"?.so;" LUA_CDIR"loadall.so;" "./?.so" \
++		LUA_CDIR64"?.so;" LUA_CDIR64"loadall.so;" "./?.so"
+ #endif
+ 
  #endif			/* } */
- 
- 
