@@ -14,7 +14,7 @@
 Summary:	Powerful, light-weight programming language
 Name:		lua
 Version:	5.4.4
-Release:	1
+Release:	2
 License:	MIT
 Group:		Development/Other
 Url:		http://www.lua.org/
@@ -28,6 +28,8 @@ Patch4:		0001-Add-option-for-pgo-profiling-test-with-scimark.patch
 Provides:	lua%{major} = %{EVRD}
 BuildRequires:	pkgconfig(readline)
 BuildRequires:	pkgconfig(ncursesw)
+Provides:	%{_bindir}/lua
+Provides:	%{_bindir}/luac
 Requires(post,postun):	chkconfig
 
 %description
