@@ -14,7 +14,7 @@
 Summary:	Powerful, light-weight programming language
 Name:		lua
 Version:	5.4.4
-Release:	4
+Release:	5
 License:	MIT
 Group:		Development/Other
 Url:		http://www.lua.org/
@@ -132,11 +132,11 @@ sed -i -e "s|gcc|%{__cc}|g" src/Makefile
 sed -i 's/-lncurses/-lncursesw/g' */Makefile*
 
 %if %{with pgo}
-CFLAGS_PGO="%{optflags} -fprofile-instr-generate"
-CXXFLAGS_PGO="%{optflags} -fprofile-instr-generate"
+CFLAGS_PGO="%{optflags} -fprofile-generate"
+CXXFLAGS_PGO="%{optflags} -fprofile-generate"
 FFLAGS_PGO="$CFLAGS_PGO"
 FCFLAGS_PGO="$CFLAGS_PGO"
-LDFLAGS_PGO="%{ldflags} -fprofile-instr-generate"
+LDFLAGS_PGO="%{build_ldflags} -fprofile-generate"
 export LLVM_PROFILE_FILE=%{name}-%p.profile.d
 export LD_LIBRARY_PATH="$(pwd)"
 %make_build CC=%{__cc} linux CFLAGS="${CFLAGS_PGO} -fPIC -DLUA_USE_LINUX" MYLDFLAGS="${LDFLAGS_PGO}"
@@ -146,9 +146,9 @@ unset LLVM_PROFILE_FILE
 llvm-profdata merge --output=%{name}.profile *.profile.d
 rm -f *.profile.d
 make clean
-export CFLAGS="%{optflags} -fprofile-instr-use=$(realpath %{name}.profile)"
-export CXXFLAGS="%{optflags} -fprofile-instr-use=$(realpath %{name}.profile)"
-export LDFLAGS="%{ldflags} -fprofile-instr-use=$(realpath %{name}.profile)"
+export CFLAGS="%{optflags} -fprofile-use=$(realpath %{name}.profile)"
+export CXXFLAGS="%{optflags} -fprofile-use=$(realpath %{name}.profile)"
+export LDFLAGS="%{build_ldflags} -fprofile-use=$(realpath %{name}.profile)"
 %endif
 %make_build CC=%{__cc} linux CFLAGS="${CFLAGS} -fPIC -DLUA_USE_LINUX" MYLDFLAGS="${LDFLAGS}"
 
