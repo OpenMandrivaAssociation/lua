@@ -5,7 +5,7 @@
 %define alt_priority %(echo %{major} | sed -e 's/[^0-9]//g')
 
 # (tpg) enable PGO build
-%ifnarch riscv64
+%if %{cross_compiling}
 %bcond_without pgo
 %else
 %bcond_with pgo
