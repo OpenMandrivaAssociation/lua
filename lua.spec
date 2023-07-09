@@ -6,15 +6,15 @@
 
 # (tpg) enable PGO build
 %if %{cross_compiling}
-%bcond_without pgo
-%else
 %bcond_with pgo
+%else
+%bcond_without pgo
 %endif
 
 Summary:	Powerful, light-weight programming language
 Name:		lua
 Version:	5.4.6
-Release:	1
+Release:	2
 License:	MIT
 Group:		Development/Other
 Url:		http://www.lua.org/
@@ -139,8 +139,8 @@ FCFLAGS_PGO="$CFLAGS_PGO"
 LDFLAGS_PGO="%{build_ldflags} -fprofile-generate"
 export LLVM_PROFILE_FILE=%{name}-%p.profile.d
 export LD_LIBRARY_PATH="$(pwd)"
-%make_build CC=%{__cc} linux CFLAGS="${CFLAGS_PGO} -fPIC -DLUA_USE_LINUX" MYLDFLAGS="${LDFLAGS_PGO}"
-make test_pgo CC=%{__cc} linux CFLAGS="${CFLAGS_PGO} -fPIC -DLUA_USE_LINUX" MYLDFLAGS="${LDFLAGS_PGO}"
+%make_build CC="%{__cc}" linux CFLAGS="${CFLAGS_PGO} -fPIC -DLUA_USE_LINUX" MYLDFLAGS="${LDFLAGS_PGO}"
+make test_pgo CC="%{__cc}" linux CFLAGS="${CFLAGS_PGO} -fPIC -DLUA_USE_LINUX" MYLDFLAGS="${LDFLAGS_PGO}"
 unset LD_LIBRARY_PATH
 unset LLVM_PROFILE_FILE
 llvm-profdata merge --output=%{name}.profile *.profile.d
@@ -150,7 +150,7 @@ export CFLAGS="%{optflags} -fprofile-use=$(realpath %{name}.profile)"
 export CXXFLAGS="%{optflags} -fprofile-use=$(realpath %{name}.profile)"
 export LDFLAGS="%{build_ldflags} -fprofile-use=$(realpath %{name}.profile)"
 %endif
-%make_build CC=%{__cc} linux CFLAGS="${CFLAGS} -fPIC -DLUA_USE_LINUX" MYLDFLAGS="${LDFLAGS}"
+%make_build CC="%{__cc}" linux CFLAGS="${CFLAGS} -fPIC -DLUA_USE_LINUX" MYLDFLAGS="${LDFLAGS}"
 
 %install
 %make_install INSTALL_TOP=%{buildroot}%{_prefix} INSTALL_LIB=%{buildroot}%{_libdir} INSTALL_MAN=%{buildroot}%{_mandir}/man1
