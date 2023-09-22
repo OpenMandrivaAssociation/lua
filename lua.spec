@@ -14,7 +14,7 @@
 Summary:	Powerful, light-weight programming language
 Name:		lua
 Version:	5.4.6
-Release:	2
+Release:	3
 License:	MIT
 Group:		Development/Other
 Url:		http://www.lua.org/
@@ -30,7 +30,6 @@ BuildRequires:	pkgconfig(readline)
 BuildRequires:	pkgconfig(ncursesw)
 Provides:	%{_bindir}/lua
 Provides:	%{_bindir}/luac
-Requires(post,postun):	chkconfig
 
 %description
 Lua is a programming language originally designed for extending applications,
