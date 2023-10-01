@@ -14,7 +14,7 @@
 Summary:	Powerful, light-weight programming language
 Name:		lua
 Version:	5.4.6
-Release:	3
+Release:	4
 License:	MIT
 Group:		Development/Other
 Url:		http://www.lua.org/
@@ -30,6 +30,7 @@ BuildRequires:	pkgconfig(readline)
 BuildRequires:	pkgconfig(ncursesw)
 Provides:	%{_bindir}/lua
 Provides:	%{_bindir}/luac
+Requires(post,postun): %{_sbindir}/update-alternatives
 
 %description
 Lua is a programming language originally designed for extending applications,
@@ -49,10 +50,10 @@ goals are simplicity, efficiency, portability, and low embedding cost.
 %{_mandir}/man1/*
 
 %post
-/usr/sbin/update-alternatives --install %{_bindir}/lua lua %{_bindir}/lua%{major} %{alt_priority} --slave %{_bindir}/luac luac %{_bindir}/luac%{major}
+%{_sbindir}/update-alternatives --install %{_bindir}/lua lua %{_bindir}/lua%{major} %{alt_priority} --slave %{_bindir}/luac luac %{_bindir}/luac%{major}
 
 %postun
-[ -f %{_bindir}/lua%{major} ] || /usr/sbin/update-alternatives --remove lua %{_bindir}/lua%{major}
+[ -f %{_bindir}/lua%{major} ] || %{_sbindir}/update-alternatives --remove lua %{_bindir}/lua%{major}
 
 #----------------------------------------------------------------------------
 
