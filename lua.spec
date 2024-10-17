@@ -17,7 +17,7 @@ Version:	5.4.7
 Release:	1
 License:	MIT
 Group:		Development/Other
-Url:		http://www.lua.org/
+Url:		https://www.lua.org/
 Source0:	http://www.lua.org/ftp/%{name}-%{version}.tar.gz
 Source1:	lua.pc
 Patch0:		lua-5.4.6-dynlib.patch
