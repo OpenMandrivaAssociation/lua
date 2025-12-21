@@ -26,6 +26,7 @@ Patch2:		lua52-compat-old-versions.patch
 Patch3:		0001-Add-scimark-as-PGO-profiling-workload.patch
 Patch4:		0001-Add-option-for-pgo-profiling-test-with-scimark.patch
 Provides:	lua%{major} = %{EVRD}
+BuildRequires:	make
 BuildRequires:	pkgconfig(readline)
 BuildRequires:	pkgconfig(ncursesw)
 Provides:	%{_bindir}/lua
